@@ -13,34 +13,35 @@ public class PinBallScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.gamepointText=GameObject.Find("GamePoint");
         score=0;
-        this.gamepointText=GameObject.Find("GamePointText");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        this.gamepointText.GetComponent<Text>().text=score.ToString();
     }
 
     void OnCollisionEnter( Collision other )
 
     {
-        if (tag=="SmallStarTag")
+        if (other.gameObject.tag=="SmallStarTag")
         {
-            score+=10;
+            this.score+=10;
         }
-        else if(tag=="LargeStarTag")
+        else if(other.gameObject.tag=="LargeStarTag")
         {
-            score+=20;
+            this.score+=20;
         }
-        else if(tag=="SmallCloudTag")
+        else if(other.gameObject.tag=="SmallCloudTag")
         {
-            score+=30;
+            this.score+=30;
         }
-        else if(tag=="LargeCloudTag")
+        else if(other.gameObject.tag=="LargeCloudTag")
         {
-            score+=50;
+            this.score+=50;
         }
     }
 }
